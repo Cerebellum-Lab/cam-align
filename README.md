@@ -11,6 +11,7 @@ Standalone camera alignment and offset compensation app.
 - Runs a post-process check for paired side/front or left/right output
 - Backs up files before in-place changes
 - Supports explicit undo and failure recovery
+- Detects compatible legacy ReachX scorer folders and can regenerate `hand.npy` and `pellet.npy` from camera scorer outputs
 
 ## Install And Run
 
@@ -56,6 +57,7 @@ cam-align
 - Compensation keeps the master timeline authoritative and applies offsets only to selected secondary cameras.
 - `systemdata_copy.yaml` is used to choose the master camera.
 - `cam3` and `stimCam` are ignored by the compensation flow.
+- Legacy scorer folders with `sideCam.npy` and `frontCam.npy` can regenerate `hand.npy` and `pellet.npy`; fixed-cam scorer trajectory regeneration is not implemented.
 - Timestamp files are inspected for dropped frames. If drops are detected, the app warns the user because it does not correct mid-recording hardware drops.
 - The `Post-Process Check` button uses `ffprobe` and OpenCV frame reads to verify videos and paired artifacts after compensation.
 - If the master/secondary frame count mismatch exceeds 100 frames, the tool stops and treats it as a significant acquisition error.
@@ -67,4 +69,5 @@ cam-align
 3. Preview the raw and compensated secondary videos.
 4. Run a dry pass if you want to inspect the offset before writing files.
 5. Apply compensation after the backup is created.
-6. Run the post-process check to verify the output.
+6. Regenerate compatible scorer outputs if the selected session has a supported legacy scorer folder.
+7. Run the post-process check to verify the output.
