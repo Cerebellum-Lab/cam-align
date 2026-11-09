@@ -60,6 +60,7 @@ cam-align
 - Legacy scorer folders with `sideCam.npy` and `frontCam.npy` can regenerate `hand.npy` and `pellet.npy`; fixed-cam scorer trajectory regeneration is not implemented.
 - Timestamp files are inspected for dropped frames. If drops are detected, the app warns the user because it does not correct mid-recording hardware drops.
 - The `Post-Process Check` button uses `ffprobe` and OpenCV frame reads to verify videos and paired artifacts after compensation.
+- `ffmpeg` and `ffprobe` are not installed by `pip` and are optional. The app looks for them on `PATH` and in the WinGet FFmpeg package folders; `File > Set ffprobe Path...` points it at an `ffprobe` elsewhere. Without `ffprobe` the post-process check skips its ffprobe steps and reports that. Without `ffmpeg`, compensated `.mp4` videos are written with OpenCV's writer instead of `ffmpeg`.
 - If the master/secondary frame count mismatch exceeds 100 frames, the tool stops and treats it as a significant acquisition error.
 
 ## Typical Workflow
